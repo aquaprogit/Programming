@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 
 namespace Lab1
 {
@@ -38,6 +33,15 @@ namespace Lab1
             if (File.Exists($"{fileName}.txt") == false)
                 CreateFile($"{fileName}.txt");
             File.AppendAllLines($"{fileName}.txt", data);
+        }
+        /// <summary>
+        /// Reads all lines of the file
+        /// </summary>
+        /// <param name="fileName">File name without extension</param>
+        /// <returns>Array of lines of the file</returns>
+        public string[] ReadData(string fileName)
+        {
+            return File.Exists($"{fileName}.txt") ? File.ReadAllLines($"{fileName}.txt") : new string[0];
         }
     }
 }

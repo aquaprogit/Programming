@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lab1
 {
@@ -15,12 +11,12 @@ namespace Lab1
         /// <returns>Array of inputted lines</returns>
         public string[] GetMultilineInput(ConsoleKey exitKey = ConsoleKey.E)
         {
-            ConsoleKeyInfo key;
-            string result = "";
+            PrintInputHint(exitKey);
             bool keepEntering;
+            string result = "";
             do
             {
-                key = Console.ReadKey();
+                var key = Console.ReadKey(true);
                 keepEntering = key.Key != exitKey || key.Modifiers != ConsoleModifiers.Alt;
                 if (keepEntering)
                 {
@@ -28,25 +24,31 @@ namespace Lab1
                     {
                         case ConsoleKey.Enter:
                             result += "\n";
+                            Console.CursorLeft = 0;
                             Console.CursorTop++;
                             break;
                         case ConsoleKey.Backspace:
-                            Console.Write(' ');
+                            if (Console.CursorLeft == 0)
+                                break;
                             Console.CursorLeft--;
+                            Console.Write(" ");
+                            Console.CursorLeft--;
+                            result = result.Remove(result.Length - 1, 1);
                             break;
                         default:
+                            Console.Write(key.KeyChar);
                             result += key.KeyChar.ToString();
                             break;
                     }
                 }
-                else
-                {
-                    Console.CursorLeft--;
-                    Console.Write(' ');
-                    Console.WriteLine();
-                }
             } while (keepEntering);
+            Console.Write("\n");
             return result.Split('\n');
+        }
+        private void PrintInputHint(ConsoleKey key)
+        {
+            Console.WriteLine($"Enter text, which would be written to next file\n" +
+                $"[To exit entering mode press ALT+{key}]");
         }
     }
 }
