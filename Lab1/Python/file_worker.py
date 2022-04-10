@@ -1,3 +1,4 @@
+import os.path
 from enum import Enum
 
 
@@ -16,6 +17,10 @@ def write_to_file(file_name: str, open_mode: OpenMode, content: list[str]):
             file.write(line + '\n')
     return True
 
+
 def read_file(file_name: str) -> list[str]:
-    with open(file_name, 'r') as file:
-        return file.read().split('\n')
+    if os.path.exists(file_name):
+        with open(file_name, 'r') as file:
+            return file.read().split('\n')
+    else:
+        return []
