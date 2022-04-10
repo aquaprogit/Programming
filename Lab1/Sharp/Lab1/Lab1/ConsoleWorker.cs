@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Lab1
 {
@@ -45,10 +46,35 @@ namespace Lab1
             Console.Write("\n");
             return result.Split('\n');
         }
+        public WriteMode GetWriteMode()
+        {
+            string input = "";
+            string[] possibleInputs = new string[] { "a", "w" };
+            do
+            {
+                Console.WriteLine("Choose write mode: print \'w\' to open in write mode,\n" +
+                    "print \'a\' to open in append mode");
+                input = Console.ReadLine();
+            } while (possibleInputs.Contains(input.ToLower()) == false);
+            switch (input.ToLower())
+            {
+                case "a":
+                    return WriteMode.Append;
+                case "w":
+                    return WriteMode.Write;
+                default:
+                    return WriteMode.Write;
+            }
+        }
         private void PrintInputHint(ConsoleKey key)
         {
             Console.WriteLine($"Enter text, which would be written to next file\n" +
                 $"[To exit entering mode press ALT+{key}]");
         }
+    }
+    enum WriteMode
+    {
+        Write,
+        Append
     }
 }

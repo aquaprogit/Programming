@@ -10,7 +10,8 @@ namespace Lab1
         /// <param name="fileName">File name without extension</param>
         public void CreateFile(string fileName)
         {
-            File.Create($"{fileName}.txt").Close();
+            if (File.Exists($"{fileName}.txt") == false)
+                File.Create($"{fileName}.txt").Close();
         }
         /// <summary>
         /// Rewrites file with the given content

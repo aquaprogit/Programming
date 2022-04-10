@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Lab1
 {
@@ -12,8 +7,8 @@ namespace Lab1
         static void Main(string[] args)
         {
             string firstFileName = "firstData",
-                   secondFileName = "secondData",
-                   outputFileName = "outputData";
+                    secondFileName = "secondData",
+                    outputFileName = "outputData";
             TextWorker textWorker = new TextWorker();
             ConsoleWorker consoleWorker = new ConsoleWorker();
             FileWorker fileWorker = new FileWorker();
@@ -22,9 +17,15 @@ namespace Lab1
             fileWorker.CreateFile(secondFileName);
             fileWorker.CreateFile(outputFileName);
 
-            fileWorker.WriteData(firstFileName, consoleWorker.GetMultilineInput());
+            if (consoleWorker.GetWriteMode() == WriteMode.Write)
+                fileWorker.WriteData(firstFileName, consoleWorker.GetMultilineInput());
+            else
+                fileWorker.AppendData(firstFileName, consoleWorker.GetMultilineInput());
             Console.WriteLine("====================");
-            fileWorker.WriteData(secondFileName, consoleWorker.GetMultilineInput());
+            if (consoleWorker.GetWriteMode() == WriteMode.Write)
+                fileWorker.WriteData(secondFileName, consoleWorker.GetMultilineInput());
+            else
+                fileWorker.AppendData(secondFileName, consoleWorker.GetMultilineInput());
             Console.WriteLine("====================");
 
             string[] fromFirstFile = fileWorker.ReadData(firstFileName);
@@ -38,7 +39,12 @@ namespace Lab1
             }
             Console.WriteLine("Count of output elements: " + resultContent.Length);
             fileWorker.WriteData(outputFileName, resultContent);
-
+            //TextWorker worker = new TextWorker();
+            //FileWorker fileWorker = new FileWorker();
+            //foreach (var line in worker.SecondWithoutFirst(fileWorker.ReadData("firstData"), fileWorker.ReadData("secondData")))
+            //{
+            //    Console.WriteLine(line);
+            //}
             Console.ReadLine();
         }
     }
