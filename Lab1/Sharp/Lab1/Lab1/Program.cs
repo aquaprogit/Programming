@@ -13,19 +13,27 @@ namespace Lab1
             ConsoleWorker consoleWorker = new ConsoleWorker();
             FileWorker fileWorker = new FileWorker();
 
-            fileWorker.CreateFile(firstFileName);
-            fileWorker.CreateFile(secondFileName);
+            bool result1 = fileWorker.CreateFile(firstFileName);
+            bool result2 = fileWorker.CreateFile(secondFileName);
             fileWorker.CreateFile(outputFileName);
 
             if (consoleWorker.GetWriteMode() == WriteMode.Write)
                 fileWorker.WriteData(firstFileName, consoleWorker.GetMultilineInput());
             else
+            {
+                if (result1 == false)
+                    consoleWorker.PrintFileContent("\nFirstData.txt content: ", fileWorker.ReadData(firstFileName));
                 fileWorker.AppendData(firstFileName, consoleWorker.GetMultilineInput());
+            }
             Console.WriteLine("====================");
             if (consoleWorker.GetWriteMode() == WriteMode.Write)
                 fileWorker.WriteData(secondFileName, consoleWorker.GetMultilineInput());
             else
+            {
+                if (result2 == false)
+                    consoleWorker.PrintFileContent("\nSecondData.txt content: ", fileWorker.ReadData(secondFileName));
                 fileWorker.AppendData(secondFileName, consoleWorker.GetMultilineInput());
+            }
             Console.WriteLine("====================");
 
             string[] fromFirstFile = fileWorker.ReadData(firstFileName);
@@ -39,12 +47,6 @@ namespace Lab1
             }
             Console.WriteLine("Count of output elements: " + resultContent.Length);
             fileWorker.WriteData(outputFileName, resultContent);
-            //TextWorker worker = new TextWorker();
-            //FileWorker fileWorker = new FileWorker();
-            //foreach (var line in worker.SecondWithoutFirst(fileWorker.ReadData("firstData"), fileWorker.ReadData("secondData")))
-            //{
-            //    Console.WriteLine(line);
-            //}
             Console.ReadLine();
         }
     }

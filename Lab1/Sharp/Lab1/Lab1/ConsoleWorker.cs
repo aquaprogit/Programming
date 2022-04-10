@@ -5,11 +5,6 @@ namespace Lab1
 {
     internal class ConsoleWorker
     {
-        /// <summary>
-        /// Provides user multiline input while exit key + ALT are not pressed 
-        /// </summary>
-        /// <param name="exitKey">Key to exit</param>
-        /// <returns>Array of inputted lines</returns>
         public string[] GetMultilineInput(ConsoleKey exitKey = ConsoleKey.E)
         {
             PrintInputHint(exitKey);
@@ -44,7 +39,7 @@ namespace Lab1
                 }
             } while (keepEntering);
             Console.Write("\n");
-            return result.Split('\n');
+            return result.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
         }
         public WriteMode GetWriteMode()
         {
@@ -65,6 +60,16 @@ namespace Lab1
                 default:
                     return WriteMode.Write;
             }
+        }
+
+        public void PrintFileContent(string header, string[] content)
+        {
+            Console.WriteLine(header + "\n====================");
+            foreach (var item in content)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine("====================");
         }
         private void PrintInputHint(ConsoleKey key)
         {
