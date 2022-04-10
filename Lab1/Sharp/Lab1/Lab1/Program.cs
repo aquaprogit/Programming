@@ -36,7 +36,7 @@ namespace Lab1
             {
                 Console.WriteLine(item);
             }
-
+            Console.WriteLine("Count of output elements: " + resultContent.Length);
             fileWorker.WriteData(outputFileName, resultContent);
 
             Console.ReadLine();
