@@ -46,7 +46,7 @@ namespace Lab2
                 foreach (var item in objs)
                 {
                     writer.Write(item.Name);
-                    writer.Write(item.Type);
+                    writer.Write(item.Kind);
                     writer.Write(item.Amount);
                     writer.Write(item.Price);
                     writer.Write(item.Color.ToString());
