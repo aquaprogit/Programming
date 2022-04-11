@@ -22,6 +22,13 @@ namespace Lab2
         public int Price { get; private set; }
         public int Amount { get; private set; }
 
+        public override string ToString()
+        {
+            return $"Title : {Name} {Type}\n" +
+                   $"Amount: {Amount}\n" +
+                   $"Price : {Price}\n" +
+                   $"Color : {Color}";
+        }
     }
     enum Color
     {
