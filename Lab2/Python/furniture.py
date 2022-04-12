@@ -6,7 +6,7 @@ class Furniture:
         self.price = price
         self.color = color
 
-    def print(self) -> object:
+    def print(self):
         print(f'Title            : {self.name} {self.kind}\n'
               f'Amount in storage: {self.amount}\n'
               f'Price per one    : {self.price}\n'

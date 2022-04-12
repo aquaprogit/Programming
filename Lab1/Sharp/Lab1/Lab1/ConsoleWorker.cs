@@ -43,7 +43,7 @@ namespace Lab1
         }
         public WriteMode GetWriteMode()
         {
-            string input = "";
+            string input;
             string[] possibleInputs = new string[] { "a", "w" };
             do
             {
