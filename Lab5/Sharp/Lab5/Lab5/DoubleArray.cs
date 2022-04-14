@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace ConsoleApp1
+namespace Lab5
 {
     internal class DoubleArray : TArray<double>
     {
