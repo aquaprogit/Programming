@@ -16,6 +16,14 @@ namespace Lab5
             _elems.ToList().ForEach(elem => elem -= value);
         }
 
+        public override void FillRandomly()
+        {
+            for (int i = 0; i < Count; i++)
+            {
+                _elems[i] = _random.GetDouble(-25, 26);
+            }
+        }
+
         public override double GetAverage()
         {
             double sum = _elems.Sum();
