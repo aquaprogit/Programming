@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lab5
 {
-    internal abstract class TArray<T> where T : struct
+    internal abstract class TArray<T> : IEnumerable
     {
         protected T[] _elems;
         protected static Random _random = new Random();
@@ -20,5 +16,10 @@ namespace Lab5
         public abstract void DecreaseAll(T value);
         public abstract void FillRandomly();
         public abstract double GetAverage();
+
+        public IEnumerator GetEnumerator()
+        {
+            return _elems.GetEnumerator();
+        }
     }
 }

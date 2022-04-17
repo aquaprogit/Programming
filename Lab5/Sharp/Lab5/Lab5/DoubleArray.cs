@@ -11,9 +11,19 @@ namespace Lab5
             _elems = new double[length];
         }
 
+        public override void IncreaseAll(double value)
+        {
+            for (int i = 0; i < Count; i++)
+            {
+                _elems[i] += value;
+            }
+        }
         public override void DecreaseAll(double value)
         {
-            _elems.ToList().ForEach(elem => elem -= value);
+            for (int i = 0; i < Count; i++)
+            {
+                _elems[i] -= value;
+            }
         }
 
         public override void FillRandomly()
@@ -30,9 +40,5 @@ namespace Lab5
             return sum / _elems.Count();
         }
 
-        public override void IncreaseAll(double value)
-        {
-            _elems.ToList().ForEach(elem => elem += value);
-        }
     }
 }
