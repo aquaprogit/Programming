@@ -7,9 +7,9 @@ namespace Lab6
     {
         static void Main(string[] args)
         {
-            Tree tree = new Tree();
+            Tree<char> tree = new Tree<char>();
             string input = "dhefmncejk";
-            foreach (int i in input.ToArray().Select(c => Convert.ToInt32(c)))
+            foreach (char i in input)
             {
                 tree.Insert(i);
                 Console.Write(i + " ");

@@ -1,19 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lab6
 {
-    internal class Node
+    internal class Node<T> where T : IComparable<T>
     {
-        public int Value { get; set; }
+        public T Value { get; set; }
 
-        public Node Left;
-        public Node Right;
+        public Node<T> Left;
+        public Node<T> Right;
 
-        public Node(int value)
+        public Node(T value)
         {
             Value = value;
             Left = Right = null;
