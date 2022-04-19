@@ -49,8 +49,11 @@ namespace Lab6
         }
         private void Insert(T value, ref Node<T> node)
         {
-            if (node == null) node = new Node<T>(value);
-
+            if (node == null)
+            {
+                node = new Node<T>(value);
+                return;
+            }
             if (value.CompareTo(node.Value) < 0)
             {
                 if (node.Left != null)
@@ -81,24 +84,15 @@ namespace Lab6
                 }
                 else if (node.Left == null ^ node.Right == null)
                 {
-                    var existingChild = node.Left ?? node.Right;
-                    if (node.Left == null)
-                    {
-                        node = node.Right;
-                        node.Right = null;
-                    }
-                    else
-                    {
-                        node = node.Left;
-                        node.Left = null;
-                    }
+                    node = node.Left ?? node.Right;
                 }
                 else if (node.Left != null && node.Right != null)
                 {
                     if (node.Right.Left == null)
                     {
-                        node.Value = node.Right.Value;
-                        node.Right.Value = node.Right.Right.Value;
+                        var left = node.Left;
+                        node = node.Right;
+                        node.Left = left;
                     }
                     else
                     {

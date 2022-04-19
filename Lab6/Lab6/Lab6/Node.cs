@@ -14,5 +14,10 @@ namespace Lab6
             Value = value;
             Left = Right = null;
         }
+
+        public override string ToString()
+        {
+            return $"{Value}";
+        }
     }
 }
