@@ -88,16 +88,21 @@ namespace Lab6
                 }
                 else if (node.Left != null && node.Right != null)
                 {
-                    if (node.Right.Left == null)
+                    if (node.Left.Right == null)
                     {
-                        var left = node.Left;
-                        node = node.Right;
-                        node.Left = left;
+                        node.Value = node.Left.Value;
+                        node.Left = node.Left.Left;
                     }
                     else
                     {
-                        node.Value = node.Right.Left.Value;
-                        Remove(node.Right.Left.Value, ref node.Right.Left);
+                        Node<T> rightestParrent = node.Left;
+
+                        while (rightestParrent.Right.Right != null)
+                        {
+                            rightestParrent = rightestParrent.Right;
+                        }
+                        node.Value = rightestParrent.Right.Value;
+                        Remove(rightestParrent.Right.Value, ref rightestParrent.Right);
                     }
                 }
             }
