@@ -1,11 +1,12 @@
 from int_array import *
 from float_array import *
 
+
 def print_arrays(header: str, arrays: list[TArray]):
     print(header)
     for array in arrays:
         print(array)
-    print("end")
+    print("      ")
 
 
 def main():

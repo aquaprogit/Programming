@@ -43,8 +43,8 @@
         }
         public bool IsOnLine(Point point)
         {
-            var equation = this.GetEquationOfLine();
-            return point.X * equation.xCoeff + equation.freeCoeff == point.Y &&
+            var (xCoeff, freeCoeff) = GetEquationOfLine();
+            return point.X * xCoeff + freeCoeff == point.Y &&
                 point.X.InRange(A.X, B.X) &&
                 point.Y.InRange(A.Y, B.Y);
 

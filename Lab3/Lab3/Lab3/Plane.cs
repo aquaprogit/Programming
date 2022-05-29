@@ -25,7 +25,6 @@ namespace Lab3
         {
             return A * point.X + B * point.Y + C * point.Z + D * 1 == 0;
         }
-
         public override string ToString()
         {
             string result = "";
@@ -33,7 +32,8 @@ namespace Lab3
             string[] varChars = new string[] { "x", "y", "z", "" };
             for (int i = 0; i < coeffs.Length; i++)
             {
-                if (coeffs[i] == 0) continue;
+                if (coeffs[i] == 0) 
+                    continue;
                 result += coeffs[i].ToString("+ 0.0;- 0.0") + varChars[i] + " ";
             }
             if (result.StartsWith("+"))

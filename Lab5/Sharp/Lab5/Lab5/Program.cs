@@ -18,9 +18,7 @@ namespace Lab5
                 doubleArrays[i].FillRandomly();
             }
             Worker.PrintArrays("Int arrays", intArrays);
-            Console.WriteLine("====================");
             Worker.PrintArrays("Double arrays", doubleArrays);
-            Console.WriteLine("====================");
             int value = int.Parse(Worker.Input("Enter number to work with: ", str => int.TryParse(str, out _)));
 
             for (int i = 0; i < m; i++)
@@ -29,9 +27,7 @@ namespace Lab5
                 doubleArrays[i].DecreaseAll(value);
             }
             Worker.PrintArrays("Int arrays", intArrays);
-            Console.WriteLine("====================");
             Worker.PrintArrays("Double arrays", doubleArrays);
-            Console.WriteLine("====================");
             IntArray intAv = (IntArray)Worker.WithMaxAverage(intArrays);
             DoubleArray doubleAv = (DoubleArray)Worker.WithMaxAverage(doubleArrays);
             if (intAv.GetAverage() > doubleAv.GetAverage())
@@ -79,6 +75,7 @@ namespace Lab5
             {
                 DisplayArray($"{header} #{i + 1}: ", arrays[i]);
             }
+            Console.WriteLine("====================");
         }
     }
 }
